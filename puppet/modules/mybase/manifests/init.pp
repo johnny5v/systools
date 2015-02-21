@@ -36,7 +36,6 @@
 # Copyright 2015 Your name here, unless otherwise noted.
 #
 class mybase {
-	notify {"Installing packages":}
 	$pkgs=['sudo','tmux','vim','git']
 	package { $pkgs:
 		ensure	=> 'present'
