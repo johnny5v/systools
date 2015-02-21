@@ -36,10 +36,14 @@
 # Copyright 2015 Your name here, unless otherwise noted.
 #
 class mybase {
+	notify {"Installing packages":}
 	$pkgs=['sudo','tmux','vim','git']
 	package { $pkgs:
 		ensure	=> 'present'
 	}
 
+	file { '/root/.bashrc':
+		source => "puppet:///modules/mybase/bashrc"
+	}
 
 }
