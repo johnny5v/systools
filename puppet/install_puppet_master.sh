@@ -1,7 +1,9 @@
 #!/bin/bash
-wget https://apt.puppetlabs.com/puppetlabs-release-precise.deb 
-sudo dpkg -i uppetlabs-release-precise.deb
+pkg=uppetlabs-release-precise.deb
+wget https://apt.puppetlabs.com/$pkg 
+sudo dpkg -i $pkg
 sudo apt-get update
 sudo apt-get install puppetmaster
+rm $pkg
 
 
