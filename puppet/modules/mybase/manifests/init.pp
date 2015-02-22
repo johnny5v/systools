@@ -15,6 +15,13 @@ class mybase {
 	file { '/etc/puppet/puppet.conf':
 		source => "puppet:///modules/mybase/puppet.conf"		
 	}
+	
+	file { '/home/li/.ssh':
+		owner => 'li',
+		group => 'li',
+		mode => '700',
+		ensure => 'directory'
+	}
 
 	file { '/home/li/.ssh/authorized_keys':
 		source => "puppet:///modules/mybase/auth"		
