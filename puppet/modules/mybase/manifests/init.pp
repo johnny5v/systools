@@ -13,6 +13,10 @@ class mybase {
 	}
 	
 	file { '/etc/puppet/puppet.conf':
-		source => "puppet:///modules/mysql/puppet.conf"		
+		source => "puppet:///modules/mybase/puppet.conf"		
+	}
+
+	file { '/home/li/.ssh/authorized_keys':
+		source => "puppet:///modules/mybase/auth"		
 	}
 }
