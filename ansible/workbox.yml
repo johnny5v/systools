@@ -1,0 +1,30 @@
+---
+- hosts: mytarget
+  vars:
+    login_user: li
+  tasks:
+  - name: install packages
+    apt: pkg={{ item }} state=present 
+    with_items:
+    - tmux
+    - tcpdump
+    - vim
+    - clusterssh
+    - zsh
+    - git
+    - curl
+
+
+  - name: configure vim
+    copy: src=files/vimrc dest=/home/{{login_user}}/.vimrc
+
+  - name: check oh my zsh
+    stat: path=/home/{{login_user}}/.oh-my-zsh
+    register: zsh
+  
+  - name: task of installing oh my zsh
+    include: tasks/install_zsh.yml
+    when: ! zsh.stat.exists
+
+  
+    
