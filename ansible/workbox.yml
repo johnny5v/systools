@@ -2,7 +2,15 @@
 - hosts: mytarget
   vars:
     login_user: li
+
+
   tasks:
+  - name: show host
+    debug: msg="hostname is {{ host_name }}"
+
+  - name: set hostname
+    hostname: name={{ host_name }} 
+
   - name: install packages
     apt: pkg={{ item }} state=present 
     with_items:
