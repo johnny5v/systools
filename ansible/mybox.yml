@@ -17,13 +17,19 @@
     apt: pkg={{ item }} state=present 
     with_items:
     - tmux
+    - byobu
     - tcpdump
     - vim
     - clusterssh
     - zsh
     - git
     - curl
+<<<<<<< HEAD
     - sudo
+=======
+    - tree
+    - mlocate
+>>>>>>> 90003e82baab80c85b6d02260156268d303d94e2
 
 
   - name: configure vim
