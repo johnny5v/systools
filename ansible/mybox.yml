@@ -10,6 +10,8 @@
 
   - name: set hostname
     hostname: name={{ host_name }} 
+  - name: sync hosts file
+    template: src=templates/hosts.j2 dest=/etc/hosts  
 
   - name: install packages
     apt: pkg={{ item }} state=present 
@@ -21,6 +23,7 @@
     - zsh
     - git
     - curl
+    - sudo
 
 
   - name: configure vim
