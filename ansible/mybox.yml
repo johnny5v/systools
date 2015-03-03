@@ -24,12 +24,10 @@
     - zsh
     - git
     - curl
-<<<<<<< HEAD
     - sudo
-=======
     - tree
     - mlocate
->>>>>>> 90003e82baab80c85b6d02260156268d303d94e2
+    - rsync
 
 
   - name: configure vim
