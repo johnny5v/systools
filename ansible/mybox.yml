@@ -5,11 +5,9 @@
 
 
   tasks:
-  - name: show host
-    debug: msg="hostname is {{ host_name }}"
-
   - name: set hostname
     hostname: name={{ host_name }} 
+
   - name: sync hosts file
     template: src=templates/hosts.j2 dest=/etc/hosts  
 
@@ -29,9 +27,12 @@
     - mlocate
     - rsync
 
-
   - name: configure vim
     copy: src=files/vimrc dest=/home/{{login_user}}/.vimrc
+
+
+  - name: configure puppet
+    copy: src=files/puppet.conf dest=/etc/puppet/
 
   - name: check oh my zsh
     stat: path=/home/{{login_user}}/.oh-my-zsh
