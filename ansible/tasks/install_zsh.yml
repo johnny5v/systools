@@ -1,9 +1,0 @@
----
-  - name: download oh my zsh
-    get_url: url=https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh dest=/var/tmp/ohmyzsh_install.sh
-
-  - name: chmod of ohmyzsh_install.sh
-    file: path=/var/tmp/ohmyzsh_install.sh mode=0744
-  
-  - name: install oh my zsh
-    shell: /var/tmp/ohmyzsh_install.sh
