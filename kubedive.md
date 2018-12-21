@@ -1,4 +1,4 @@
-# Command cheatshee
+# Command cheatsheet
 
 ## minikube
 
