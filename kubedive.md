@@ -11,21 +11,28 @@ export no_proxy=$no_proxy,$(minikube ip)
 Other useful commands
 
 ```bash
+minikube status 
+minikube logs
 minikube ssh
 minikube delete
 minikube docker-env
 minikube status
-minikube service
-minikube dashboard
+minikube service <service-name> # craete a tunnel to your service
+minikube dashboard #tunnel to your dashboard
 ```
 
 
 ## kubectl
 ```bash
-kubectl -n kube-system logs kubernetes-dashboard-6f4cfc5d87-zqh2z
+kubectl version # check both client and server version
+kubectl get po -n kube-system
+kubectl -n kube-system logs <pod-name> -f # tailing the logs
 kubectl exec -it <pod-name> /bin/sh
 kubectl port-forward <port-forward> 8086:8086
 kubectl get events -n kube-system
+kubectl get deployment -n kube-system
+kubectl describe pod <pod-name> -o wide
+kubectl get svc -n kube-system -o wide
 
 ```
 
