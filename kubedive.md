@@ -49,3 +49,5 @@ kubectl create clusterrolebinding add-on-cluster-admin --clusterrole=cluster-adm
 ```
 The github issue is [here](https://github.com/kubernetes/minikube/issues/3281).
 
+## Useful links
+* https://kubernetes.io/docs/reference/kubectl/cheatsheet/
