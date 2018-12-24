@@ -10,6 +10,6 @@
 We can specify replica in both controllers, but Deployment allows us to scale up and down the pod. Deployment has wider usage than ReplicaSet.
 Normally we just use Deployment. 
 
-## Ingress
+## Publishing Service Service Type
 ### ClusterIp VS NodePort VS Load Balancer
-The service exposed with ClusterIp are only visible inside the cluster while NodePort service are available to the outside. NodePort is available for minikube. Public cloud providers normally ship with Load Balancer, a more advanced ingress, which is not avaiable on minikube.
+The service exposed with ClusterIp are only visible inside the cluster while NodePort service are available to the outside. NodePort is available for minikube. Public cloud providers normally ship with Load Balancer, a more advanced ingress, which is not avaiable on minikube. Please check [this](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types) for more details.
