@@ -13,3 +13,6 @@ Normally we just use Deployment.
 ## Publishing Service Service Type
 ### ClusterIp VS NodePort VS Load Balancer
 The service exposed with ClusterIp are only visible inside the cluster while NodePort service are available to the outside. NodePort is available for minikube. Public cloud providers normally ship with Load Balancer, a more advanced ingress, which is not avaiable on minikube. Please check [this](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types) for more details.
+
+## How to debug K8s
+[see this](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-application-introspection/)
