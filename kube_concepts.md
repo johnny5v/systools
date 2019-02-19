@@ -1,3 +1,5 @@
+## Import Kube concepts
+* [see this](https://www.kubernetes.org.cn/kubernetes%E8%AE%BE%E8%AE%A1%E7%90%86%E5%BF%B5)
 ## Controllers
 ### StatefulSets
 * it maintains state of the application, by that it usually means there is persistent storage.
