@@ -3,7 +3,7 @@ Puppet::Type.newtype(:acl) do
     ensurable
     newparam(:path) do
         validate do |value|
-            resource[:provider]= :johnny
+            resource[:provider]= :ruby
         end
         isnamevar
     end
@@ -30,7 +30,7 @@ Puppet::Type.newtype(:acl) do
     
 end
 
-Puppet::Type.type(:acl).provide(:johnny) do
+Puppet::Type.type(:acl).provide(:ruby) do
     $path_exists = nil
     $owner_match = nil
     $group_match = nil
@@ -58,7 +58,7 @@ Puppet::Type.type(:acl).provide(:johnny) do
         mode_def = resource[:mode]
         owner_def = resource[:owner]
         group_def = resource[:owner]
-        
+        notice "path = #{resource[:path]}"
         $path_exists = system "ls","-d",resource[:path]
         
         if $path_exists then

@@ -1,0 +1,9 @@
+---
+version: 5
+defaults:
+  data_hash: yaml_data
+  datadir: data
+hierarchy:
+  - name: "Common values"
+    path: "common.yaml"
+

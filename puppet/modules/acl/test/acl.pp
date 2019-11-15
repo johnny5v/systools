@@ -1,5 +1,6 @@
+
 acl {"myacl":
-    path => '/home/qiuj/hello_',
+    path => lookup('acl::path'),
     mode => '775',
     owner => 'jianl',
     group => 'jianl',
