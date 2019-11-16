@@ -1,8 +1,10 @@
+$allpaths = lookup('acl::allpaths')
 
-acl {"myacl":
-    path => lookup('acl::path'),
-    mode => '775',
-    owner => 'jianl',
-    group => 'jianl',
-    ensure => present
+$allpaths.each |Hash $path|{
+	acl {$path['path']:
+	    mode => $path['mode'],
+	    owner => $path['owner'],
+	    group => $path['group'],
+	    ensure => present
+	}	
 }

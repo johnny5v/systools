@@ -1,2 +1,11 @@
 ---
 acl::path: /home/qiuj/hello
+acl::allpaths:
+  - path: /home/qiuj/hello1
+    owner: jianl
+    group: jianl
+    mode: 777
+  - path: /home/qiuj/hello2
+    owner: jianl
+    group: hive
+    mode: 755  
