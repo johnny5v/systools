@@ -3,7 +3,7 @@ Puppet::Type.newtype(:acl) do
     ensurable
     newparam(:path) do
         validate do |value|
-            resource[:provider]= :ruby
+            resource[:provider]= :acler
         end
         isnamevar
     end
@@ -30,22 +30,14 @@ Puppet::Type.newtype(:acl) do
     
 end
 
-Puppet::Type.type(:acl).provide(:ruby) do
-    $path_exists = nil
-    $owner_match = nil
-    $group_match = nil
+Puppet::Type.type(:acl).provide(:acler) do
 
     def create
-        if $path_exists then
-            unless $owner_match then
-                system 'chown',resource[:owner],resource[:path]
-            end
-            unless $group_match then
-                system 'chgrp',resource[:group],resource[:path]
-            end
-        else
-            system 'mkdir','-p',resource[:path]
-            system "chown #{resource[:owner]}:#{resource[:group]} #{resource[:path]}"
+        unless $owner_match then
+            system 'chown',resource[:owner],resource[:path]
+        end
+        unless $group_match then
+            system 'chgrp',resource[:group],resource[:path]
         end
     end
 
@@ -58,25 +50,17 @@ Puppet::Type.type(:acl).provide(:ruby) do
         mode_def = resource[:mode]
         owner_def = resource[:owner]
         group_def = resource[:group]
-        $path_exists = system "ls","-d",resource[:path]
         
-        if $path_exists then
-            facl = `getfacl #{resource[:path]}`.gsub('#','').split()
-            fi = facl.index('file:')
-            oi = facl.index('owner:')
-            gi = facl.index('group:')
-            owner_cur = facl[oi+1]
-            group_cur = facl[gi+1]
-            
-            $owner_match = owner_cur == owner_def
-            $group_match = group_cur == group_def
-            notice "group_cur = #{group_cur},group_def=#{group_def}"
-            all_match = $owner_match && $group_match
-            return all_match
-        else
-            return false
-        end
-                
+        facl = `getfacl #{resource[:path]}`.gsub('#','').split()
+        fi = facl.index('file:')
+        oi = facl.index('owner:')
+        gi = facl.index('group:')
+        owner_cur = facl[oi+1]
+        group_cur = facl[gi+1]
+        
+        $owner_match = owner_cur == owner_def
+        $group_match = group_cur == group_def
+        all_match = $owner_match && $group_match
 
     end
 end
