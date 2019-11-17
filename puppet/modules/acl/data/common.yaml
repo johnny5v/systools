@@ -3,9 +3,9 @@ acl::path: /home/qiuj/hello
 acl::allpaths:
   - path: /home/qiuj/hello1
     owner: qiuj
-    group: qiuj
+    group: jianl
     mode: 777
   - path: /home/qiuj/hello2
     owner: qiuj
-    group: hive
+    group: jianl
     mode: 755  

@@ -1,66 +1,57 @@
 Puppet::Type.newtype(:acl) do
     @doc = "acl"
-    ensurable
     newparam(:path) do
         validate do |value|
             resource[:provider]= :acler
         end
         isnamevar
     end
+    newproperty(:owner) do
+       desc "The owner of the file."
+       validate do |value|
+           #notice 'something here'
 
-    newparam(:mode) do
-       desc "acl"
-       validate do |value|
-           #resource[:provider] = :myacl
        end
     end
 
-    newparam(:owner) do
-       desc "acl"
+    newproperty(:group) do
+       desc "The owner of the file."
        validate do |value|
-           #resource[:provider] = :myacl
+           #notice 'something here'
        end
     end
-    newparam(:group) do
-       desc "acl"
-       validate do |value|
-           #resource[:provider] = :myacl
-       end
-    end
-    
+
 end
 
 Puppet::Type.type(:acl).provide(:acler) do
+    # notice "path=#{resource[:path]}"
+    $owner_cur = nil
+    $group_cur = nil
 
-    def create
-        unless $owner_match then
-            system 'chown',resource[:owner],resource[:path]
-        end
-        unless $group_match then
-            system 'chgrp',resource[:group],resource[:path]
-        end
-    end
-
-    def destroy
-        notice "in destroy"
-    end
-
-    def exists?
-        path_def = resource[:path]
-        mode_def = resource[:mode]
-        owner_def = resource[:owner]
-        group_def = resource[:group]
-        
+    def get_perms
         facl = `getfacl #{resource[:path]}`.gsub('#','').split()
         fi = facl.index('file:')
         oi = facl.index('owner:')
         gi = facl.index('group:')
-        owner_cur = facl[oi+1]
-        group_cur = facl[gi+1]
-        
-        $owner_match = owner_cur == owner_def
-        $group_match = group_cur == group_def
-        all_match = $owner_match && $group_match
-
+        $owner_cur = facl[oi+1] 
+        $group_cur = facl[gi+1] 
     end
+
+    def owner
+        get_perms
+        owner_def = resource[:owner]
+        unless $owner_cur == owner_def
+            notice "changing owner current_value=#{$owner_cur}, should be #{owner_def}"
+        end
+        return owner_def
+    end
+
+    def group
+        group_def = resource[:group]
+        unless $group_cur == group_def
+            notice "changing group current_value=#{$group_cur}, should be #{group_def}"
+        end
+        return group_def
+    end    
+
 end
