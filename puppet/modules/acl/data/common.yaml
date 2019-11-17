@@ -2,10 +2,10 @@
 acl::path: /home/qiuj/hello
 acl::allpaths:
   - path: /home/qiuj/hello1
-    owner: jianl
-    group: jianl
+    owner: qiuj
+    group: qiuj
     mode: 777
   - path: /home/qiuj/hello2
-    owner: jianl
+    owner: qiuj
     group: hive
     mode: 755  

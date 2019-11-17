@@ -57,8 +57,7 @@ Puppet::Type.type(:acl).provide(:ruby) do
         path_def = resource[:path]
         mode_def = resource[:mode]
         owner_def = resource[:owner]
-        group_def = resource[:owner]
-        notice "path = #{resource[:path]}"
+        group_def = resource[:group]
         $path_exists = system "ls","-d",resource[:path]
         
         if $path_exists then
@@ -71,7 +70,8 @@ Puppet::Type.type(:acl).provide(:ruby) do
             
             $owner_match = owner_cur == owner_def
             $group_match = group_cur == group_def
-            all_match = $owner_match and $group_match
+            notice "group_cur = #{group_cur},group_def=#{group_def}"
+            all_match = $owner_match && $group_match
             return all_match
         else
             return false
