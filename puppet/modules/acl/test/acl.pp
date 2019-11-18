@@ -1,7 +1,9 @@
 $allpaths = lookup('acl::allpaths')
 
 $allpaths.each |Hash $path|{
-	hfile { $path['path']:}
+	hfile { $path['path']:
+		ensure => present
+	}
 	->
 	acl {$path['path']:
 	    # mode => $path['mode'],

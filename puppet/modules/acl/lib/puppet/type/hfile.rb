@@ -10,7 +10,6 @@ Puppet::Type.newtype(:hfile) do
 end
 
 Puppet::Type.type(:hfile).provide(:hfiler) do
-
     def create
         system 'mkdir','-p',resource[:path]
     end
@@ -20,7 +19,6 @@ Puppet::Type.type(:hfile).provide(:hfiler) do
     end
 
     def exists?
-        path_exists = system "ls","-d",resource[:path]
-        
+        path_exists = system "test","-d",resource[:path]
     end
 end
