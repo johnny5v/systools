@@ -62,7 +62,7 @@ Puppet::Type.type(:acl).provide(:acler) do
     def group
         group_def = resource[:group]
         unless $path_exists
-            return group_def
+            return $group_cur
         end        
         unless $group_cur == group_def
             notice "changing group current_value=#{$group_cur},#{$staus_msg} #{group_def}"
