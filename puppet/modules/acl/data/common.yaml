@@ -1,5 +1,4 @@
 ---
-acl::path: /home/qiuj/hello
 acl::allpaths:
   - path: /home/qiuj/hello1
     owner: qiuj
