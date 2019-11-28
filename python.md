@@ -7,4 +7,6 @@ ORM lib
 Web Service lib
 ## http retry
 check [this](https://www.peterbe.com/plog/best-practice-with-retries-with-requests)
+## Geek for geeks
+chekc [this](https://www.geeksforgeeks.org/python-merge-python-key-values-to-list/)
 
